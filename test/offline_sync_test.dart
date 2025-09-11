@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_offline_sync/flutter_offline_sync.dart';
+import 'package:flutter_data_sync_manager/flutter_data_sync_manager.dart';
 
 void main() {
   group('SyncManager Tests', () {

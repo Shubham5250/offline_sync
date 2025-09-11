@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_offline_sync/flutter_offline_sync.dart';
+import 'package:flutter_data_sync_manager/flutter_data_sync_manager.dart';
 
 /// Example app demonstrating offline_sync package
 /// 

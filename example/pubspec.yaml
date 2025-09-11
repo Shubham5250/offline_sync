@@ -1,4 +1,4 @@
-name: flutter_offline_sync_example
+name: flutter_data_sync_manager_example
 description: Example app demonstrating offline_sync package usage
 version: 1.0.0+1
 
@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_offline_sync:
+  flutter_data_sync_manager:
     path: ../
   cupertino_icons: ^1.0.2
 
