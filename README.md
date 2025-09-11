@@ -1,4 +1,4 @@
-# Offline Sync
+# Flutter Offline Sync
 
 A Flutter package for seamless offline-first data synchronization between local and remote storage.
 
@@ -17,13 +17,13 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  offline_sync: ^0.1.0
+  flutter_offline_sync: ^1.0.1
 ```
 
 ## Quick Start
 
 ```dart
-import 'package:offline_sync/offline_sync.dart';
+import 'package:flutter_offline_sync/flutter_offline_sync.dart';
 
 // Create sync manager
 final sync = SyncManager(
@@ -41,7 +41,7 @@ await sync.sync(); // Automatically merges changes, handles conflicts
 ### Basic Setup
 
 ```dart
-import 'package:offline_sync/offline_sync.dart';
+import 'package:flutter_offline_sync/flutter_offline_sync.dart';
 
 class MyApp {
   late SyncManager syncManager;

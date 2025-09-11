@@ -1,6 +1,6 @@
-# Offline Sync Example
+# Flutter Offline Sync Example
 
-This example demonstrates how to use the `offline_sync` package in a Flutter app.
+This example demonstrates how to use the `flutter_offline_sync` package in a Flutter app.
 
 ## What this example shows
 

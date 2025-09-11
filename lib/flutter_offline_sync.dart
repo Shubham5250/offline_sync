@@ -1,4 +1,4 @@
-library offline_sync;
+library flutter_offline_sync;
 
 // Core classes
 export 'src/sync_manager.dart';
