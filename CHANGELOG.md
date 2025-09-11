@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.1.1] - 2025-01-XX
+## [1.1.1] - 2025-01-27
 
 ### Fixed
 - Updated dependencies to latest versions for better pub.dev score
@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improved code quality and static analysis compliance
 - Removed AI-generated comments and action instructions
 
-## [1.1.0] - 2025-01-XX
+## [1.1.0] - 2025-01-27
 
 ### Added
 - Network status monitoring with automatic sync triggering
@@ -28,12 +28,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Enhanced conflict resolution with proper timestamp handling
 - Fixed GitHub repository URLs in documentation
 
-## [1.0.1] - 2025-01-XX
+## [1.0.1] - 2025-01-27
 
-## [0.1.0] - 2024-01-XX
+### Fixed
+- Improved timestamp comparison logic in sync operations
+- Enhanced conflict resolution with proper timestamp handling
+- Fixed GitHub repository URLs in documentation
+
+## [1.0.0] - 2025-01-27
 
 ### Added
-- Initial release of Offline Sync package
+- Initial release of Flutter Data Sync Manager package
 - Core `SyncManager` class for managing sync operations
 - Support for two-way sync (local ↔ remote)
 - Multiple conflict resolution strategies:
@@ -75,4 +80,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Dependencies
 - Flutter SDK >=3.10.0
 - Dart SDK >=3.0.0
-- No external dependencies (adapters are optional)
+- connectivity_plus ^7.0.0
+- collection ^1.19.1
+- meta ^1.16.0
