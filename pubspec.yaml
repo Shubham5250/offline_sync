@@ -1,6 +1,6 @@
 name: offline_sync
 description: A Flutter package for seamless offline-first data synchronization between local and remote storage.
-version: 0.1.0
+version: 1.0.1
 homepage: https://github.com/Shubham5250/offline_sync
 repository: https://github.com/Shubham5250/offline_sync
 issue_tracker: https://github.com/Shubham5250/offline_sync/issues
