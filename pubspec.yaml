@@ -27,7 +27,6 @@ topics:
   - database
   - storage
   - flutter
-  - dart
 
 platforms:
   android:
