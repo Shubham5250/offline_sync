@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_data_sync_manager/flutter_data_sync_manager.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
   group('SyncManager Tests', () {
     late SyncManager syncManager;
     late MockLocalAdapter localAdapter;
@@ -13,7 +14,9 @@ void main() {
       syncManager = SyncManager(
         localDb: localAdapter,
         remoteApi: remoteAdapter,
-        config: SyncConfig.defaultConfig(),
+        config: SyncConfig(
+          syncOnNetworkRestore: false, 
+        ),
       );
     });
 
@@ -29,7 +32,6 @@ void main() {
     test('should perform sync successfully', () async {
       await syncManager.initialize();
       
-      // Add some test data
       await localAdapter.save('test_key', {'value': 'local_data'});
       await remoteAdapter.save('test_key', {'value': 'remote_data'});
       

@@ -9,6 +9,7 @@ import 'strategies/conflict_resolution_strategy.dart';
 import 'strategies/last_write_wins_strategy.dart';
 import 'strategies/manual_resolution_strategy.dart';
 import 'strategies/merge_strategy.dart';
+import 'network_status_monitor.dart';
 
 /// Main class for managing offline sync operations
 class SyncManager {
@@ -18,6 +19,7 @@ class SyncManager {
   
   ConflictResolutionStrategyBase? _conflictStrategy;
   Timer? _backgroundSyncTimer;
+  NetworkStatusMonitor? _networkMonitor;
   bool _isInitialized = false;
   bool _isSyncing = false;
 
@@ -35,6 +37,7 @@ class SyncManager {
     await remoteApi.initialize();
     
     _setupConflictResolutionStrategy();
+    _setupNetworkMonitoring();
     
     if (config.backgroundSync) {
       _startBackgroundSync();
@@ -235,9 +238,16 @@ class SyncManager {
   /// Check if sync is currently in progress
   bool get isSyncing => _isSyncing;
 
+  /// Check if device has network connectivity
+  bool get isNetworkAvailable => _networkMonitor?.isConnected ?? false;
+
+  /// Get the network status monitor for advanced usage
+  NetworkStatusMonitor? get networkMonitor => _networkMonitor;
+
   /// Close the sync manager and cleanup resources
   Future<void> close() async {
     stopBackgroundSync();
+    _networkMonitor?.dispose();
     await localDb.close();
     await remoteApi.close();
     _isInitialized = false;
@@ -260,6 +270,25 @@ class SyncManager {
       case ConflictResolutionStrategy.remoteWins:
         _conflictStrategy = RemoteWinsStrategy();
         break;
+    }
+  }
+
+  void _setupNetworkMonitoring() {
+    if (!config.syncOnNetworkRestore) return;
+    
+    try {
+      _networkMonitor = NetworkStatusMonitor();
+      _networkMonitor!.initialize();
+      
+      // Auto-sync when network becomes available
+      _networkMonitor!.onConnected(() {
+        if (!_isSyncing) {
+          syncWithRetry();
+        }
+      });
+    } catch (e) {
+      // Network monitoring not available (e.g., in tests)
+      // Continue without network monitoring
     }
   }
 
@@ -318,7 +347,7 @@ class SyncManager {
   }
 
   bool _isLocalNewer(String key, Map<String, dynamic> local, Map<String, dynamic> remote) {
-    // Compare timestamps if available, otherwise use a simple heuristic
+    // Check timestamps first if available
     final localTimestamp = local['_lastModified'] as DateTime?;
     final remoteTimestamp = remote['_lastModified'] as DateTime?;
     
@@ -326,12 +355,12 @@ class SyncManager {
       return localTimestamp.isAfter(remoteTimestamp);
     }
     
-    // Fallback: if no timestamps, consider local newer if it has more fields
+    // If no timestamps, use field count as comparison
     return local.length >= remote.length;
   }
 
   bool _isRemoteNewer(String key, Map<String, dynamic> local, Map<String, dynamic> remote) {
-    // Compare timestamps if available, otherwise use a simple heuristic
+    // Check timestamps first if available
     final localTimestamp = local['_lastModified'] as DateTime?;
     final remoteTimestamp = remote['_lastModified'] as DateTime?;
     
@@ -339,7 +368,7 @@ class SyncManager {
       return remoteTimestamp.isAfter(localTimestamp);
     }
     
-    // Fallback: if no timestamps, consider remote newer if it has more fields
+    // If no timestamps, use field count as comparison
     return remote.length > local.length;
   }
 }

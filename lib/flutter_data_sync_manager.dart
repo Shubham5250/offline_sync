@@ -5,6 +5,7 @@ export 'src/sync_manager.dart';
 export 'src/models/sync_result.dart';
 export 'src/models/sync_config.dart';
 export 'src/models/conflict_resolution.dart';
+export 'src/network_status_monitor.dart';
 
 // Adapter interfaces
 export 'src/adapters/local_adapter.dart';

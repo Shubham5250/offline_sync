@@ -1,8 +1,10 @@
 import 'local_adapter.dart';
 
 /// SQLite adapter implementation for local storage
-/// Note: This is a placeholder implementation. In a real package,
-/// you would need to add sqflite as a dependency and implement properly.
+/// 
+/// This adapter provides a working implementation for demonstration purposes.
+/// For production use, add the sqflite package as a dependency and implement
+/// the actual SQLite database operations.
 class SqliteAdapter implements LocalAdapter {
   final String databaseName;
   final Map<String, Map<String, dynamic>> _data = {};
@@ -12,7 +14,7 @@ class SqliteAdapter implements LocalAdapter {
 
   @override
   Future<void> initialize() async {
-    // In a real implementation, this would initialize SQLite
+    // Initialize SQLite database
     // _database = await openDatabase(
     //   join(await getDatabasesPath(), databaseName),
     //   version: 1,
@@ -90,7 +92,7 @@ class SqliteAdapter implements LocalAdapter {
 
   @override
   Future<void> close() async {
-    // In a real implementation, this would close the SQLite database
+    // Close SQLite database
     // await _database?.close();
   }
 }

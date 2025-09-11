@@ -143,7 +143,7 @@ class MyLocalAdapter implements LocalAdapter {
     // Save item to local storage
   }
 
-  // ... implement other methods
+  // Add remaining methods as needed
 }
 ```
 
@@ -166,7 +166,7 @@ class MyRemoteAdapter implements RemoteAdapter {
     return true;
   }
 
-  // ... implement other methods
+  // Add remaining methods as needed
 }
 ```
 

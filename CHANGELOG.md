@@ -5,12 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.1] - 2025-01-XX
+## [1.1.0] - 2025-01-XX
+
+### Added
+- Network status monitoring with automatic sync triggering
+- Connectivity detection using connectivity_plus package
+- Auto-sync when network becomes available
+- Network status callbacks for custom handling
+- Public API to check network availability
+- Enhanced user experience with seamless offline-to-online transitions
 
 ### Fixed
 - Improved timestamp comparison logic in sync operations
 - Enhanced conflict resolution with proper timestamp handling
 - Fixed GitHub repository URLs in documentation
+
+## [1.0.1] - 2025-01-XX
 
 ## [0.1.0] - 2024-01-XX
 

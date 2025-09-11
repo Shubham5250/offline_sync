@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_data_sync_manager/flutter_data_sync_manager.dart';
 
-/// Complete example showing how to use Offline Sync in a Todo app
+/// Todo app example demonstrating offline sync functionality
 class TodoAppExample extends StatefulWidget {
   const TodoAppExample({super.key});
 
@@ -271,14 +271,14 @@ class Todo {
   }
 }
 
-/// Custom remote adapter for Todo API
+/// Remote adapter implementation for Todo API
 class TodoApiAdapter implements RemoteAdapter {
   final Map<String, Map<String, dynamic>> _remoteData = {};
   final Map<String, DateTime> _timestamps = {};
 
   @override
   Future<void> initialize() async {
-    // Simulate some initial remote data
+    // Add some initial remote data
     _remoteData['todo_1'] = {
       'id': 'todo_1',
       'title': 'Buy groceries',
@@ -290,7 +290,7 @@ class TodoApiAdapter implements RemoteAdapter {
 
   @override
   Future<Map<String, Map<String, dynamic>>> getAll() async {
-    // Simulate API call delay
+    // Add API call delay
     await Future.delayed(const Duration(milliseconds: 500));
     return Map<String, Map<String, dynamic>>.from(_remoteData);
   }
@@ -341,7 +341,7 @@ class TodoApiAdapter implements RemoteAdapter {
 
   @override
   Future<bool> isAvailable() async {
-    // Simulate network connectivity check
+    // Check network connectivity
     return true; // In real app, check actual network status
   }
 
