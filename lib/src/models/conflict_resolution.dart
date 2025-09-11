@@ -2,16 +2,16 @@
 enum ConflictResolutionStrategy {
   /// Last write wins - the most recent timestamp wins
   lastWriteWins,
-  
+
   /// Manual resolution - conflicts are reported for manual handling
   manual,
-  
+
   /// Merge strategy - attempts to merge non-conflicting fields
   merge,
-  
+
   /// Local wins - local changes always take precedence
   localWins,
-  
+
   /// Remote wins - remote changes always take precedence
   remoteWins,
 }
@@ -20,19 +20,19 @@ enum ConflictResolutionStrategy {
 class Conflict {
   /// The key/ID of the conflicted item
   final String key;
-  
+
   /// Local version of the data
   final Map<String, dynamic> localData;
-  
+
   /// Remote version of the data
   final Map<String, dynamic> remoteData;
-  
+
   /// Timestamp of local change
   final DateTime localTimestamp;
-  
+
   /// Timestamp of remote change
   final DateTime remoteTimestamp;
-  
+
   /// Fields that are in conflict
   final List<String> conflictingFields;
 
@@ -56,10 +56,10 @@ class Conflict {
 class ConflictResolutionResult {
   /// The resolved data
   final Map<String, dynamic> resolvedData;
-  
+
   /// Whether the resolution was successful
   final bool success;
-  
+
   /// Error message if resolution failed
   final String? error;
 

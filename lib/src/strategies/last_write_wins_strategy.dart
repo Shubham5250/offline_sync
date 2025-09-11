@@ -11,13 +11,13 @@ class LastWriteWinsStrategy extends ConflictResolutionStrategyBase {
     try {
       // Choose the data with the most recent timestamp
       final Map<String, dynamic> resolvedData;
-      
+
       if (conflict.localTimestamp.isAfter(conflict.remoteTimestamp)) {
         resolvedData = Map<String, dynamic>.from(conflict.localData);
       } else {
         resolvedData = Map<String, dynamic>.from(conflict.remoteData);
       }
-      
+
       return ConflictResolutionResult.success(resolvedData);
     } catch (e) {
       return ConflictResolutionResult.failure(

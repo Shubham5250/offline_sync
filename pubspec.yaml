@@ -1,6 +1,6 @@
 name: flutter_data_sync_manager
 description: A Flutter package for seamless offline-first data synchronization between local and remote storage.
-version: 1.1.0
+version: 1.1.1
 homepage: https://github.com/Shubham5250/offline_sync
 repository: https://github.com/Shubham5250/offline_sync
 issue_tracker: https://github.com/Shubham5250/offline_sync/issues
@@ -12,9 +12,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  meta: ^1.11.0
-  collection: ^1.17.0
-  connectivity_plus: ^5.0.2
+  meta: ^1.16.0
+  collection: ^1.19.1
+  connectivity_plus: ^7.0.0
 
 dev_dependencies:
   flutter_test:

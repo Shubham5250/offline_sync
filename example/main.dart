@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_data_sync_manager/flutter_data_sync_manager.dart';
 
 /// Example app demonstrating offline_sync package
-/// 
+///
 /// This example shows:
 /// - Basic sync setup with local and remote adapters
 /// - Conflict resolution strategies
@@ -67,7 +67,7 @@ class _OfflineSyncExamplePageState extends State<OfflineSyncExamplePage> {
     try {
       // This is the magic! One line handles everything:
       // - Uploads local changes to remote
-      // - Downloads remote changes to local  
+      // - Downloads remote changes to local
       // - Resolves conflicts automatically
       // - Retries on failure
       final result = await syncManager.syncWithRetry();
@@ -116,12 +116,16 @@ class _OfflineSyncExamplePageState extends State<OfflineSyncExamplePage> {
                     Text('Is Syncing: ${isSyncing ? "Yes" : "No"}'),
                     if (lastSyncResult != null) ...[
                       const SizedBox(height: 8),
-                      Text('Last Sync: ${lastSyncResult!.success ? "Success" : "Failed"}'),
+                      Text(
+                          'Last Sync: ${lastSyncResult!.success ? "Success" : "Failed"}'),
                       if (lastSyncResult!.success) ...[
-                        Text('Local → Remote: ${lastSyncResult!.localToRemoteCount}'),
-                        Text('Remote → Local: ${lastSyncResult!.remoteToLocalCount}'),
+                        Text(
+                            'Local → Remote: ${lastSyncResult!.localToRemoteCount}'),
+                        Text(
+                            'Remote → Local: ${lastSyncResult!.remoteToLocalCount}'),
                         Text('Conflicts: ${lastSyncResult!.conflictCount}'),
-                        Text('Duration: ${lastSyncResult!.duration.inMilliseconds}ms'),
+                        Text(
+                            'Duration: ${lastSyncResult!.duration.inMilliseconds}ms'),
                       ] else ...[
                         Text('Error: ${lastSyncResult!.error}'),
                       ],
@@ -166,7 +170,8 @@ class _OfflineSyncExamplePageState extends State<OfflineSyncExamplePage> {
                     Text('• Two-way sync (local ↔ remote)'),
                     Text('• Conflict resolution strategies'),
                     Text('• Background sync with retry logic'),
-                    Text('• Multiple storage adapters (Hive, SQLite, SharedPrefs)'),
+                    Text(
+                        '• Multiple storage adapters (Hive, SQLite, SharedPrefs)'),
                     Text('• Configurable sync behavior'),
                   ],
                 ),
@@ -255,7 +260,8 @@ class MockRemoteAdapter implements RemoteAdapter {
   }
 
   @override
-  Future<Map<String, Map<String, dynamic>>> getModifiedSince(DateTime timestamp) async {
+  Future<Map<String, Map<String, dynamic>>> getModifiedSince(
+      DateTime timestamp) async {
     final result = <String, Map<String, dynamic>>{};
     for (final entry in _timestamps.entries) {
       if (entry.value.isAfter(timestamp)) {

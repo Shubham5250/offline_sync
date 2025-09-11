@@ -4,7 +4,7 @@ import '../models/conflict_resolution.dart';
 abstract class ConflictResolutionStrategyBase {
   /// Resolve a conflict between local and remote data
   Future<ConflictResolutionResult> resolve(Conflict conflict);
-  
+
   /// Get the strategy name
   String get name;
 }

@@ -4,7 +4,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 /// Monitors network connectivity status and provides callbacks
 class NetworkStatusMonitor {
   final Connectivity _connectivity = Connectivity();
-  StreamSubscription<ConnectivityResult>? _connectivitySubscription;
+  StreamSubscription<List<ConnectivityResult>>? _connectivitySubscription;
   
   bool _isConnected = false;
   final List<VoidCallback> _onConnectedCallbacks = [];
@@ -16,8 +16,8 @@ class NetworkStatusMonitor {
   /// Initialize the network monitor
   Future<void> initialize() async {
     // Check initial connectivity status
-    final connectivityResult = await _connectivity.checkConnectivity();
-    _updateConnectionStatus(connectivityResult);
+    final connectivityResults = await _connectivity.checkConnectivity();
+    _updateConnectionStatus(connectivityResults);
 
     // Listen for connectivity changes
     _connectivitySubscription = _connectivity.onConnectivityChanged.listen(
@@ -47,13 +47,13 @@ class NetworkStatusMonitor {
 
   /// Check if device has internet connectivity
   Future<bool> hasInternetConnection() async {
-    final connectivityResult = await _connectivity.checkConnectivity();
-    return _hasValidConnection(connectivityResult);
+    final connectivityResults = await _connectivity.checkConnectivity();
+    return _hasValidConnection(connectivityResults);
   }
 
-  void _updateConnectionStatus(ConnectivityResult connectivityResult) {
+  void _updateConnectionStatus(List<ConnectivityResult> connectivityResults) {
     final wasConnected = _isConnected;
-    _isConnected = _hasValidConnection(connectivityResult);
+    _isConnected = _hasValidConnection(connectivityResults);
 
     // Trigger callbacks only on status change
     if (!wasConnected && _isConnected) {
@@ -69,14 +69,16 @@ class NetworkStatusMonitor {
     }
   }
 
-  bool _hasValidConnection(ConnectivityResult connectivityResult) {
-    // Check if the connectivity result indicates a valid connection
-    return connectivityResult == ConnectivityResult.mobile ||
-           connectivityResult == ConnectivityResult.wifi ||
-           connectivityResult == ConnectivityResult.ethernet ||
-           connectivityResult == ConnectivityResult.vpn ||
-           connectivityResult == ConnectivityResult.bluetooth ||
-           connectivityResult == ConnectivityResult.other;
+  bool _hasValidConnection(List<ConnectivityResult> connectivityResults) {
+    // Check if any of the connectivity results indicate a valid connection
+    return connectivityResults.any((result) => 
+      result == ConnectivityResult.mobile ||
+      result == ConnectivityResult.wifi ||
+      result == ConnectivityResult.ethernet ||
+      result == ConnectivityResult.vpn ||
+      result == ConnectivityResult.bluetooth ||
+      result == ConnectivityResult.other
+    );
   }
 
   /// Dispose the network monitor and clean up resources

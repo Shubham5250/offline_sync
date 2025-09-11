@@ -2,22 +2,22 @@
 class SyncResult {
   /// Whether the sync was successful
   final bool success;
-  
+
   /// Number of items synced from local to remote
   final int localToRemoteCount;
-  
+
   /// Number of items synced from remote to local
   final int remoteToLocalCount;
-  
+
   /// Number of conflicts encountered
   final int conflictCount;
-  
+
   /// Error message if sync failed
   final String? error;
-  
+
   /// Duration of the sync operation
   final Duration duration;
-  
+
   /// Timestamp when sync completed
   final DateTime timestamp;
 

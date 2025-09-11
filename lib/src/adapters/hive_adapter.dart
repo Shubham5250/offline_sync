@@ -1,7 +1,7 @@
 import 'local_adapter.dart';
 
 /// Hive adapter implementation for local storage
-/// 
+///
 /// This adapter provides a working implementation for demonstration purposes.
 /// For production use, add the hive package as a dependency and implement
 /// the actual Hive database operations.

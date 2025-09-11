@@ -10,15 +10,15 @@ class MergeStrategy extends ConflictResolutionStrategyBase {
   Future<ConflictResolutionResult> resolve(Conflict conflict) async {
     try {
       final Map<String, dynamic> mergedData = {};
-      
+
       // Start with local data as base
       mergedData.addAll(conflict.localData);
-      
+
       // Add non-conflicting fields from remote data
       for (final entry in conflict.remoteData.entries) {
         final key = entry.key;
         final remoteValue = entry.value;
-        
+
         // If the field is not in conflict, use remote value
         if (!conflict.conflictingFields.contains(key)) {
           mergedData[key] = remoteValue;
@@ -28,7 +28,7 @@ class MergeStrategy extends ConflictResolutionStrategyBase {
           mergedData[key] = conflict.localData[key];
         }
       }
-      
+
       return ConflictResolutionResult.success(mergedData);
     } catch (e) {
       return ConflictResolutionResult.failure(

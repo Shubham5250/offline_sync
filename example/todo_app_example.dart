@@ -32,10 +32,10 @@ class _TodoAppExampleState extends State<TodoAppExample> {
 
     // Initialize the sync manager
     await syncManager.initialize();
-    
+
     // Load initial data
     await _loadTodos();
-    
+
     // Perform initial sync
     await _performSync();
   }
@@ -44,9 +44,7 @@ class _TodoAppExampleState extends State<TodoAppExample> {
   Future<void> _loadTodos() async {
     final localData = await syncManager.localDb.getAll();
     setState(() {
-      todos = localData.values
-          .map((data) => Todo.fromJson(data))
-          .toList();
+      todos = localData.values.map((data) => Todo.fromJson(data)).toList();
     });
   }
 
@@ -61,7 +59,7 @@ class _TodoAppExampleState extends State<TodoAppExample> {
 
     // Save to local storage immediately (works offline)
     await syncManager.localDb.save(todo.id, todo.toJson());
-    
+
     // Update UI immediately
     setState(() {
       todos.add(todo);
@@ -83,7 +81,7 @@ class _TodoAppExampleState extends State<TodoAppExample> {
 
     // Save to local storage
     await syncManager.localDb.save(id, todos[todoIndex].toJson());
-    
+
     setState(() {});
 
     // Sync changes
@@ -157,7 +155,7 @@ class _TodoAppExampleState extends State<TodoAppExample> {
               style: const TextStyle(fontSize: 12),
             ),
           ),
-          
+
           // Todo list
           Expanded(
             child: ListView.builder(
@@ -172,7 +170,9 @@ class _TodoAppExampleState extends State<TodoAppExample> {
                     onChanged: (_) => _toggleTodo(todo.id),
                   ),
                   leading: Icon(
-                    todo.completed ? Icons.check_circle : Icons.radio_button_unchecked,
+                    todo.completed
+                        ? Icons.check_circle
+                        : Icons.radio_button_unchecked,
                     color: todo.completed ? Colors.green : Colors.grey,
                   ),
                 );
@@ -283,7 +283,8 @@ class TodoApiAdapter implements RemoteAdapter {
       'id': 'todo_1',
       'title': 'Buy groceries',
       'completed': false,
-      'createdAt': DateTime.now().subtract(const Duration(hours: 2)).toIso8601String(),
+      'createdAt':
+          DateTime.now().subtract(const Duration(hours: 2)).toIso8601String(),
     };
     _timestamps['todo_1'] = DateTime.now().subtract(const Duration(hours: 2));
   }
@@ -346,7 +347,8 @@ class TodoApiAdapter implements RemoteAdapter {
   }
 
   @override
-  Future<Map<String, Map<String, dynamic>>> getModifiedSince(DateTime timestamp) async {
+  Future<Map<String, Map<String, dynamic>>> getModifiedSince(
+      DateTime timestamp) async {
     final result = <String, Map<String, dynamic>>{};
     for (final entry in _timestamps.entries) {
       if (entry.value.isAfter(timestamp)) {

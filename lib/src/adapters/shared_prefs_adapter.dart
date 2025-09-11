@@ -1,7 +1,7 @@
 import 'local_adapter.dart';
 
 /// SharedPreferences adapter implementation for local storage
-/// 
+///
 /// This adapter provides a working implementation for demonstration purposes.
 /// For production use, add the shared_preferences package as a dependency and
 /// implement the actual SharedPreferences operations.

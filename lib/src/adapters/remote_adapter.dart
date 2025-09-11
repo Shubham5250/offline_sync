@@ -31,7 +31,8 @@ abstract class RemoteAdapter {
   Future<bool> isAvailable();
 
   /// Get items that have been modified since a specific timestamp
-  Future<Map<String, Map<String, dynamic>>> getModifiedSince(DateTime timestamp);
+  Future<Map<String, Map<String, dynamic>>> getModifiedSince(
+      DateTime timestamp);
 
   /// Close the remote storage connection
   Future<void> close();

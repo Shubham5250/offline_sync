@@ -15,7 +15,7 @@ void main() {
         localDb: localAdapter,
         remoteApi: remoteAdapter,
         config: SyncConfig(
-          syncOnNetworkRestore: false, 
+          syncOnNetworkRestore: false,
         ),
       );
     });
@@ -31,12 +31,12 @@ void main() {
 
     test('should perform sync successfully', () async {
       await syncManager.initialize();
-      
+
       await localAdapter.save('test_key', {'value': 'local_data'});
       await remoteAdapter.save('test_key', {'value': 'remote_data'});
-      
+
       final result = await syncManager.sync();
-      
+
       expect(result.success, true);
       expect(result.localToRemoteCount, greaterThanOrEqualTo(0));
       expect(result.remoteToLocalCount, greaterThanOrEqualTo(0));
@@ -45,21 +45,21 @@ void main() {
     test('should handle sync failure when remote is unavailable', () async {
       await syncManager.initialize();
       remoteAdapter.setAvailable(false);
-      
+
       final result = await syncManager.sync();
-      
+
       expect(result.success, false);
       expect(result.error, contains('not available'));
     });
 
     test('should sync specific items', () async {
       await syncManager.initialize();
-      
+
       await localAdapter.save('item1', {'value': 'local1'});
       await localAdapter.save('item2', {'value': 'local2'});
-      
+
       final result = await syncManager.syncItems(['item1', 'item2']);
-      
+
       expect(result.success, true);
     });
   });
@@ -75,9 +75,9 @@ void main() {
         remoteTimestamp: DateTime.now().subtract(const Duration(hours: 1)),
         conflictingFields: ['value'],
       );
-      
+
       final result = await strategy.resolve(conflict);
-      
+
       expect(result.success, true);
       expect(result.resolvedData['value'], 'local');
     });
@@ -92,9 +92,9 @@ void main() {
         remoteTimestamp: DateTime.now(),
         conflictingFields: ['value'],
       );
-      
+
       final result = await strategy.resolve(conflict);
-      
+
       expect(result.success, true);
       expect(result.resolvedData['value'], 'local');
     });
@@ -109,9 +109,9 @@ void main() {
         remoteTimestamp: DateTime.now(),
         conflictingFields: ['value'],
       );
-      
+
       final result = await strategy.resolve(conflict);
-      
+
       expect(result.success, true);
       expect(result.resolvedData['value'], 'remote');
     });
@@ -120,7 +120,8 @@ void main() {
   group('SyncConfig Tests', () {
     test('should create default config', () {
       final config = SyncConfig.defaultConfig();
-      expect(config.conflictResolution, ConflictResolutionStrategy.lastWriteWins);
+      expect(
+          config.conflictResolution, ConflictResolutionStrategy.lastWriteWins);
       expect(config.maxRetries, 3);
       expect(config.backgroundSync, false);
     });
@@ -281,7 +282,8 @@ class MockRemoteAdapter implements RemoteAdapter {
   }
 
   @override
-  Future<Map<String, Map<String, dynamic>>> getModifiedSince(DateTime timestamp) async {
+  Future<Map<String, Map<String, dynamic>>> getModifiedSince(
+      DateTime timestamp) async {
     final result = <String, Map<String, dynamic>>{};
     for (final entry in _timestamps.entries) {
       if (entry.value.isAfter(timestamp)) {

@@ -4,28 +4,28 @@ import 'conflict_resolution.dart';
 class SyncConfig {
   /// Strategy to use for conflict resolution
   final ConflictResolutionStrategy conflictResolution;
-  
+
   /// Maximum number of retry attempts for failed operations
   final int maxRetries;
-  
+
   /// Delay between retry attempts
   final Duration retryDelay;
-  
+
   /// Whether to sync in background
   final bool backgroundSync;
-  
+
   /// Interval for background sync (if enabled)
   final Duration backgroundSyncInterval;
-  
+
   /// Whether to sync on app start
   final bool syncOnStart;
-  
+
   /// Whether to sync when network becomes available
   final bool syncOnNetworkRestore;
-  
+
   /// Maximum number of items to sync in a single batch
   final int batchSize;
-  
+
   /// Timeout for individual operations
   final Duration operationTimeout;
 

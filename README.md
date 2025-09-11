@@ -214,7 +214,7 @@ class CustomConflictStrategy extends ConflictResolutionStrategy {
 
   @override
   Future<ConflictResolutionResult> resolve(Conflict conflict) async {
-    // Your custom logic here
+    // Handle the conflict resolution result
     final resolvedData = {
       ...conflict.localData,
       'merged_at': DateTime.now().toIso8601String(),
