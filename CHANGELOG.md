@@ -5,21 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.1.2] - 2025-01-27
+## [1.1.3] - 2025-09-12
 
 ### Documentation
-- Updated CHANGELOG with proper release dates and comprehensive feature descriptions
+- Cleaned up CHANGELOG entries
+
+## [1.1.2] - 2025-09-12
+
+### Documentation
 - Improved documentation structure and organization
 
-## [1.1.1] - 2025-01-27
+## [1.1.1] - 2025-09-12
 
 ### Fixed
 - Updated dependencies to latest versions for better pub.dev score
 - Fixed Dart formatting issues across all files
 - Improved code quality and static analysis compliance
-- Removed AI-generated comments and action instructions
 
-## [1.1.0] - 2025-01-27
+## [1.1.0] - 2025-09-12
 
 ### Added
 - Network status monitoring with automatic sync triggering
